@@ -14,7 +14,7 @@ function App() {
   const [curUser, setCurUser] = useState(
     localStorage.getItem("currentUser") ? true : false
   );
-  // console.log(curUser);
+  console.log(curUser);
 
   const [data, setData] = useState([]);
   const dataCollectionRef = collection(blogDB, "blogger");
