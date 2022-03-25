@@ -6,7 +6,7 @@
   top: 0;
   display: flex;
   align-items: center;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   z-index: 999;
 }
 
@@ -30,6 +30,10 @@
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .topCenter {

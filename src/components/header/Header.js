@@ -7,7 +7,7 @@ export default function Header() {
     <div className='header'>
       <div className='headerTitles'>
         <span className='headerTitleSm'>ReactJs </span>
-        <span className='headerTitleLg'>Blog</span>
+        <span className='headerTitleLg'>Firebase Blog</span>
       </div>
       <img
         src='https://images.pexels.com/photos/207247/pexels-photo-207247.jpeg?cs=srgb&dl=pexels-pixabay-207247.jpg&fm=jpg'

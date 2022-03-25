@@ -1,24 +1,70 @@
-import './write.css';
+import { useState } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import blogDB from "../../fireConfig";
+import "./write.css";
 
 export default function Write() {
+  const [file, setFile] = useState("");
+  const [title, setTitle] = useState("");
+  const [story, setStory] = useState("");
+  const [author, setAuthor] = useState("");
+  const [category, setCategory] = useState("");
+
+  async function addblog(event) {
+    event.preventDefault();
+    await addDoc(collection(blogDB, "blogger"), {
+      title: title,
+      story: story,
+      file: file,
+      author: author,
+      category: category,
+    });
+    window.location.href = "/";
+  }
+
   return (
     <div className='write'>
-      <img
-        src='https://images.pexels.com/photos/9109274/pexels-photo-9109274.jpeg?cs=srgb&dl=pexels-%D0%B0%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D1%80-%D0%BC%D0%B0%D0%BA%D1%81%D0%B8%D0%BD-9109274.jpg&fm=jpg'
-        alt=''
-        className='writeImg'
-      />
+      {file.length === 0 ? (
+        <div className='uploadBox'>
+          <img
+            className='upload'
+            src='https://images.unsplash.com/photo-1634712282287-14ed57b9cc89?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8dXBsb2FkJTIwaW1hZ2V8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60'
+            alt=''
+          />
+        </div>
+      ) : (
+        <img src={file} alt={title} className='writeImg' />
+      )}
+
       <form className='writeForm'>
         <div className='writeFormGroup'>
           <label htmlFor='fileInput'>
             <i className='writeIcon fa-solid fa-plus'></i>
           </label>
-          <input type='file' id='fileInput' style={{ display: 'none' }} />
+          <input
+            type='text'
+            className='imageUrl'
+            placeholder='Image URL...'
+            onChange={(e) => setFile(e.target.value)}
+          />
+          <input
+            type='text'
+            className='author'
+            placeholder='Author...'
+            onChange={(e) => setAuthor(e.target.value)}
+          />
+          <input
+            type='text'
+            className='author'
+            placeholder='Category...'
+            onChange={(e) => setCategory(e.target.value)}
+          />
           <input
             type='text'
             placeholder='Title'
             className='writeInput'
             autoFocus={true}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className='writeFormGroup'>
@@ -27,9 +73,10 @@ export default function Write() {
             autoFocus={true}
             placeholder='Tell your story'
             type='text'
-          ></textarea>
+            onChange={(e) => setStory(e.target.value)}
+          />
         </div>
-        <button type='submit' className='writeSubmit'>
+        <button className='writeSubmit' onClick={addblog}>
           Publish
         </button>
       </form>

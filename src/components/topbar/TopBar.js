@@ -1,8 +1,12 @@
 import "./topbar.css";
 import { Link } from "react-router-dom";
 
-const TopBar = () => {
-  const user = true;
+const TopBar = ({ curUser }) => {
+  const logOut = () => {
+    localStorage.removeItem("currentUser");
+    window.location.href = "/";
+  };
+
   return (
     <div className='top'>
       <div className='topLeft'>
@@ -29,13 +33,13 @@ const TopBar = () => {
             </Link>
           </li>
           <li className='topListItem'>
-            <Link to='/' className='link'>
+            <Link to='/write' className='link'>
               write
             </Link>
           </li>
           <li className='topListItem'>
-            {user && (
-              <Link to='/' className='link'>
+            {curUser && (
+              <Link to='/' className='link' onClick={logOut}>
                 logout
               </Link>
             )}
@@ -43,12 +47,14 @@ const TopBar = () => {
         </ul>
       </div>
       <div className='topRight'>
-        {user ? (
-          <img
-            className='topImg'
-            src='https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?cs=srgb&dl=pexels-andrea-piacquadio-774909.jpg&fm=jpg'
-            alt=''
-          />
+        {curUser ? (
+          <Link to='/settings'>
+            <img
+              className='topImg'
+              src='https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?cs=srgb&dl=pexels-andrea-piacquadio-774909.jpg&fm=jpg'
+              alt=''
+            />
+          </Link>
         ) : (
           <ul className='topList'>
             <li className='topListItem'>

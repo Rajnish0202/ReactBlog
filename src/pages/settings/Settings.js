@@ -1,7 +1,7 @@
-import SideBar from '../../components/sidebar/SideBar';
-import './settings.css';
+import SideBar from "../../components/sidebar/SideBar";
+import "./settings.css";
 
-export default function Settings() {
+export default function Settings({ curUser }) {
   return (
     <div className='settings'>
       <div className='settingsWrapper'>
@@ -19,7 +19,7 @@ export default function Settings() {
             <label htmlFor='fileInput'>
               <i className='settingsPPIcon fa-regular fa-circle-user'></i>
             </label>
-            <input type='file' id='fileInput' style={{ display: 'none' }} />
+            <input type='file' id='fileInput' style={{ display: "none" }} />
           </div>
           <label>Username</label>
           <input type='text' placeholder='Jack' />
